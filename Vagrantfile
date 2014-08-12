@@ -27,7 +27,7 @@ Vagrant::Config.run do |config|
 
   # Try to use NFS only on platforms other than Windows
   nfs = !Kernel.is_windows?
-  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => nfs)
+  config.vm.share_folder("vagrant-root", "/vagrant", ".", :nfs => nfs)
 
   config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 
