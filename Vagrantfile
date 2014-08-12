@@ -31,10 +31,6 @@ end
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
-    
-    # Make sure to update apt-cache
-# Commenting next line out as apt is using US servers that are unreachable. 
-#    chef.add_recipe "apt"
 
     chef.roles_path = "roles"
 
