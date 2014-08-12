@@ -42,7 +42,7 @@ end
           :bind_address => "0.0.0.0"
         },
         :hosts => {
-          :localhost_aliases => ["dev-site.vm"]
+          :localhost_aliases => ["dev-site.local"]
         },
         :drush => {
           :install_method => 'pear',
