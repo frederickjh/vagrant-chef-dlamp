@@ -14,7 +14,13 @@ Vagrant::Config.run do |config|
   # end
 
   # Memory setting for Vagrant >= 0.90
-  config.vm.customize ["modifyvm", :id, "--memory", "1024"]
+     config.vm.provider 'virtualbox' do |v|
+    v.customize([
+      'modifyvm', :id,
+      '--memory', '1024',
+      '--natdnshostresolver1', 'on',
+    ])
+  end
 
   # Network setting for Vagrant < 0.90
   # config.vm.network("10.0.0.10")
@@ -29,8 +35,7 @@ Vagrant::Config.run do |config|
   nfs = !Kernel.is_windows?
   config.vm.share_folder("vagrant-root", "/vagrant", ".", :nfs => nfs)
 
-  config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-
+  
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks"]
