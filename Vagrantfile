@@ -19,14 +19,10 @@ config.vm.provider "virtualbox" do |vb|
   ])
 end
 
-  # Network setting for Vagrant < 0.90
-  # config.vm.network("10.0.0.10")
-
-  # Network setting for Vagrant >= 0.90
-  config.vm.network :hostonly, "10.0.0.10"
-  config.vm.forward_port(80, 80)
-  #config.vm.network :bridged
-  config.vm.forward_port(3306, 3306)
+  # Network setting for Vagrant
+  config.vm.network "private_network", ip: "10.0.0.10"
+  config.vm.network :forwarded_port, host: 80, guest: 80, auto_correct: true
+  config.vm.network :forwarded_port, host: 3306, guest: 3306, auto_correct: true
 
   # Try to use NFS only on platforms other than Windows
   nfs = !Kernel.is_windows?
