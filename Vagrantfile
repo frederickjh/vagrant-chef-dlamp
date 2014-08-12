@@ -53,7 +53,7 @@ end
         },
         :drush => {
           :install_method => 'pear',
-          :version => '5.8.0',
+          :version => '6.0',
         }
       })
   end
